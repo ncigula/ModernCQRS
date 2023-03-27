@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using MediatR;
-using MediatR.Extensions.Autofac.DependencyInjection.Builder;
 using MediatR.Extensions.Autofac.DependencyInjection;
+using MediatR.Extensions.Autofac.DependencyInjection.Builder;
 using MediatR.Pipeline;
-using ModernCQRS.Configuration.Decorators;
-using ModernCQRS.Configuration.Pipelines;
 using ModernCQRS.Commands.ProcessPayment;
 using ModernCQRS.Commands.UpdatePrice;
+using ModernCQRS.Configuration.Decorators;
+using ModernCQRS.Configuration.Pipelines;
 using ModernCQRS.Queries;
 
 var container = ConfigureDIContainer();
@@ -38,8 +38,8 @@ static IContainer ConfigureDIContainer()
     builder.RegisterGeneric(typeof(ValidationRequestPreProcessor<>)).As(typeof(IRequestPreProcessor<>));
     builder.RegisterGeneric(typeof(MetricsRequestPostProcessor<,>)).As(typeof(IRequestPostProcessor<,>));
 
-    builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerDecorator<>), typeof(IRequestHandler<>));
-    builder.RegisterGenericDecorator(typeof(LoggingRequestHandlerDecorator<>), typeof(IRequestHandler<>));
+    builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerDecorator<>), typeof(IRequestHandler<,>));
+    builder.RegisterGenericDecorator(typeof(LoggingRequestHandlerDecorator<>), typeof(IRequestHandler<,>));
 
     builder.RegisterGenericDecorator(typeof(UnitOfWorkCommandHandlerDecorator<,>), typeof(IRequestHandler<,>));
     builder.RegisterGenericDecorator(typeof(DiagnosticQueryHandlerDecorator<,>), typeof(IRequestHandler<,>));

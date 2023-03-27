@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CSharpFunctionalExtensions;
+using MediatR;
 
 namespace ModernCQRS.Configuration.Commands;
 
@@ -6,7 +7,7 @@ namespace ModernCQRS.Configuration.Commands;
 /// Base interface, for all command handlers.
 /// </summary>
 /// <typeparam name="TCommand">Type of the command, that will be handled.</typeparam>
-internal interface ICommandHandler<in TCommand> : IRequestHandler<TCommand>
+internal interface ICommandHandler<TCommand> : IRequestHandler<TCommand, Result>
         where TCommand : ICommand
 {
 }
@@ -16,7 +17,7 @@ internal interface ICommandHandler<in TCommand> : IRequestHandler<TCommand>
 /// </summary>
 /// <typeparam name="TCommand"><inheritdoc cref="ICommandHandler{TCommand}" path="/typeparam"/></typeparam>
 /// <typeparam name="TResult">Type of the object, that will be returned as command execution result.</typeparam>
-internal interface ICommandHandler<in TCommand, TResult> : IRequestHandler<TCommand, TResult>
+internal interface ICommandHandler<TCommand, TResult> : IRequestHandler<TCommand, Result<TResult>>
     where TCommand : ICommand<TResult>
 {
 }

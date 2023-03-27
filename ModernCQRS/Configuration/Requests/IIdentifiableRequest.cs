@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using CSharpFunctionalExtensions;
+using MediatR;
 
 namespace ModernCQRS.Configuration.Requests;
 
 /// <summary>
 /// Adds unique identifier for request.
 /// </summary>
-internal interface IIdentifiableRequest : IRequest
+internal interface IIdentifiableRequest : IRequest<Result>
 {
     /// <summary>
     /// Unique identifier of request.
@@ -16,7 +17,7 @@ internal interface IIdentifiableRequest : IRequest
 /// <summary>
 /// Adds unique identifier for request.
 /// </summary>
-internal interface IIdentifiableRequest<TResult> : IRequest<TResult>
+internal interface IIdentifiableRequest<TResult> : IRequest<Result<TResult>>
 {
     /// <summary>
     /// Unique identifier of request.

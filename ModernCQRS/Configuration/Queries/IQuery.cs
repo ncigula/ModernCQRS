@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CSharpFunctionalExtensions;
+using MediatR;
 
 namespace ModernCQRS.Configuration.Queries;
 
@@ -7,6 +8,6 @@ namespace ModernCQRS.Configuration.Queries;
 /// <para><see href="https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs">Read more about CQRS</see>.</para>
 /// </summary>
 /// <typeparam name="TResult">Type of the object, that will be returned as the command execution result.</typeparam>
-internal interface IQuery<out TResult> : IRequest<TResult>
+internal interface IQuery<TResult> : IRequest<Result<TResult>>
 {
 }

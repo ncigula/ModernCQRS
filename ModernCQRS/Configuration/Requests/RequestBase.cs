@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using CSharpFunctionalExtensions;
+using MediatR;
 
 namespace ModernCQRS.Configuration.Requests;
 
 /// <summary>
 /// Abstract record, that encapsulate functionality of <see cref="IRequest"/> and adding request identity.
 /// </summary>
-public abstract record RequestBase : IRequest, IIdentifiableRequest
+public abstract record RequestBase : IRequest<Result>, IIdentifiableRequest
 {
     protected RequestBase()
     {
@@ -26,7 +27,7 @@ public abstract record RequestBase : IRequest, IIdentifiableRequest
 /// <para/><typeparamref name="TResult"/> is the type of an object, that will be returned as the command execution result.
 /// </summary>
 /// <typeparam name="TResult">Type of the object, that will be returned as the command execution result.</typeparam>
-public abstract record RequestBase<TResult> : IRequest<TResult>, IIdentifiableRequest<TResult>
+public abstract record RequestBase<TResult> : IIdentifiableRequest<TResult>
 {
     protected RequestBase()
     {
